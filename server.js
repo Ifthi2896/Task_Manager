@@ -5,6 +5,7 @@ require("dotenv").config();
 const cors = require("cors");
 const connected = require("./db/connectMongodb");
 const taskRouter = require("./Routes/taskRoutes");
+const notFound = require("./middleware/notFound");
 
 //Middleware
 app.use(express.static("./public"));
@@ -13,7 +14,7 @@ app.use(cors());
 
 //Routes
 app.use("/api/tasks", taskRouter);
-
+app.use(notFound);
 //Port Listening
 
 const appInitiate = async () => {
